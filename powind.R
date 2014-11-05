@@ -2,19 +2,18 @@ ShapleyShubik <- function (t)
 {
   n <- length(t$Faction)
   perms <- permutations(n, n)
-  maj <- 226
+  maj <- 225
   outcome <- apply(perms, 1, function(x) {
     x[sum(cumsum(t$Deputies[x]) < maj) + 1] })
   sspi <- prop.table(table(outcome))
   names(sspi) <- t$Faction[sort(unique(outcome))]
-  plot(sspi / (t$Deputies / sum(t$Deputies)),
-       xlab="constituency", ylab="power index / votes")
+
 }
 
 Johnston <- function (t)
 {
   n <- length(t$Faction)
-  maj <- 226
+  maj <- 225
   perms <- permutations(2,n,c(0,1),rep = TRUE)
   h <- nrow(perms)
   jpower <- numeric(n)
@@ -67,7 +66,7 @@ DeeganPackel <- function(t)
     }
   }
   n <- length(t$Faction)
-  maj <- 226
+  maj <- 225
   p <- t$Deputies
   s <- 0
   minn <- 0
